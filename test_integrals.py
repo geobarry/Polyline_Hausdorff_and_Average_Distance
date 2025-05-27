@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Oct 27 15:37:16 2023
-
-@author: Barry Kronenfeld 
 """
 
 import integrals

@@ -7,7 +7,6 @@ calculate the house doff distance. Most of these are taken from
 Hangouet 1995, with modifications.
 
 Created on Wed May 26 13:29:02 2021
-@author: bjkronenfeld
 """
 import math as m
 import utils_geom as g
@@ -707,7 +706,7 @@ def segSegSwitchPoint(dr1, dr2, tol = 0.00000001):
     elif dr2[1] == None: # second segment parallel to a
         k_out_1 = dr1[1] + ((dr2[2])/dr1[2])
         k_out_2 = dr1[1] - ((dr2[2])/dr1[2])
-        k.append(max(k_out_1,k_out_2))
+        k.append(max(k_out_1,k_out_2))        
     else: # neither segment parallel to a
         # create more readable variables
         k1 = dr1[1]
@@ -716,7 +715,7 @@ def segSegSwitchPoint(dr1, dr2, tol = 0.00000001):
         s2 = dr2[2]
         # calculate alpha parameter
         a = s2/s1
-        if a == 1: # two segments are parallel
+        if abs(a-1) < tol: #a == 1: # two segments are parallel
             # first solution is not valid
             # return second solution only if k2 > k1
             if k2 > k1:
@@ -724,7 +723,7 @@ def segSegSwitchPoint(dr1, dr2, tol = 0.00000001):
                 k.append(k_out_2)
             else:
                 return []
-        elif a == -1: # two segments are mirror images of each other
+        elif abs(a+1) < tol: # a == -1: # two segments are mirror images of each other
             # second solution is not valid
             # return first solution only if k2 > k1
             if k2 > k1:
@@ -735,12 +734,12 @@ def segSegSwitchPoint(dr1, dr2, tol = 0.00000001):
         else: # there are two solutions
             k_out_1 = (k1-a*k2)/(1-a)
             k_out_2 = (k1+a*k2)/(1+a)
-            # select solution based on which statement is further right
+            # select solution based on which segment is further right
             if abs(s2) < abs(s1):
                 # b2 is closer to parallel with segment a
                 k.append(max(k_out_1,k_out_2))
             else:
-                # b1 is closer to parallel the segment a
+                # b1 is closer to parallel with segment a
                 k.append(min(k_out_1,k_out_2))
     # return values in ascending order, for consistency
     return sorted(k)
@@ -955,6 +954,8 @@ def candidateComponents(A,B,a,nl1,nl2,d1,d2,B_seg_idx,brute_force = False):
         The coordinates of the other polyline.
     a : int
         The index of a segment on polyline A.
+    nl1: near location 1
+    n12: near location 2
     d1 : float
         Distance from vertex a to nearest component on B.
     d2 : float

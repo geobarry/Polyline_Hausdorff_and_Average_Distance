@@ -4,7 +4,7 @@ save_data_on_exit = True
 save_history = True
 save_non_project_files = False
 project_type = 'empty-project-type'
-recent_files = ['illustration.py', 'polyline_hausdorff.py', 'utils_discernability.py', 'utils_geom.py', 'discernability.py', 'utils_hausdorff.py']
+recent_files = ['polyline_hausdorff.py', 'animation_creator.py', 'test_utils.py', 'test_efficiency.py', 'play_area.py', 'utils_hausdorff.py', '..\\..\\..\\..\\..\\Teaching\\Quantitative Methods\\materials\\normal_distribution_graph_creator.py']
 
 [main]
 version = 0.2.0

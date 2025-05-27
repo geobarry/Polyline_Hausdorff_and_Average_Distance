@@ -1,19 +1,15 @@
 # -*- coding: utf-8 -*-
 """
 Created on Sat May 25 19:21:05 2024
-
-@author: Administrator
 """
 
 import shapefile
-import win32clipboard
 
-def get_sample_feature(feat_name):
+def get_sample_feature(feat_name,data_folder):
     feat_name = feat_name.lower()
     def feature_from_data_folder(sf_name):
         # folder = r"C:\CaGIS Board Dropbox\cantaloupe bob\Barry\Research\Projects\polyline difference metrics\Hausdorff\data\Shape Files"
-        folder = r"sample_data\original"
-        filename = f"{folder}\\{sf_name}.shp"
+        filename = f"{data_folder}\\{sf_name}.shp"
         sf = shapefile.Reader(filename)
         return sf.shapes()[0].points
     if feat_name == "cannonball":
@@ -24,13 +20,6 @@ def get_sample_feature(feat_name):
         return feature_from_data_folder("lake_shelbyville")
     elif feat_name == "manhattan":
         return feature_from_data_folder("Manhattan")
-
-def copy2clip(txt):
-    # set clipboard data
-    win32clipboard.OpenClipboard()
-    win32clipboard.EmptyClipboard()
-    win32clipboard.SetClipboardText(txt)
-    win32clipboard.CloseClipboard()
 
 def create_polyline_shapefile(polylines,filepath):
     """

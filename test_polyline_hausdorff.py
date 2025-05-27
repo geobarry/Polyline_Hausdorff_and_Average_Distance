@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Tests to verify accuracy of polyline Hausdorff distance calculation
+Old (?) tests to verify accuracy of polyline Hausdorff distance calculation
 
 Created on Mon May  3 10:14:29 2021
-
-@author: bjkronenfeld
 """
 
 import polyline_hausdorff as h
@@ -41,8 +39,8 @@ class hausdorff_tests(unittest.TestCase):
                 A,B = case(s)
                 Aprime,Bprime = random_transform(A,B)
                 # check the Hausdorff distance
-                H,srcloc,srcline,srccomp,trglocs,trgcomps = h.polyline_hausdorff(A, B)
-                Hprime,srclocprime,srclineprime,srccompprime,trglocsprime,trgcompsprime = h.polyline_hausdorff(Aprime, Bprime)
+                H,avgD,fromSeg = h.hausdorff_average_distance(A,B,verbose = False)
+                Hprime,avgD,fromSeg = h.hausdorff_average_distance(Aprime,Bprime,verbose = False)
                 self.assertAlmostEqual(H, Hprime)
                 # check the Hausdorff distance from each segment
                 def segHausdorff_wrapper(C,D,seg):
@@ -50,9 +48,10 @@ class hausdorff_tests(unittest.TestCase):
                     startNearSeg = hu.nearSegment(C, D, seg, D_seg_idx)
                     endNearSeg = hu.nearSegment(C, D, seg+1, D_seg_idx)
                     startcomp,startnearloc, startd = hu.nearComponent(C, D, seg, startNearSeg)
-                    endcomp,startnearloc, endd = hu.nearComponent(C, D, seg+1, endNearSeg)
-                    candidates = hu.candidateComponents(C,D,seg,startd,endd,D_seg_idx)
-                    d,k,comps = h.segment_hausdorff(C, D, seg, startcomp, startd, endcomp, endd, candidates)
+                    endcomp,endnearloc, endd = hu.nearComponent(C, D, seg+1, endNearSeg)
+                    candidates = hu.candidateComponents(C,D,seg,startnearloc,endnearloc,startd,endd,D_seg_idx)
+                    seg_trav = h.segment_traversal(C,D,seg,startcomp,startd,endcomp,endd,candidates)
+                    d,k,comps = h.segment_hausdorff(seg_trav)
                     return d,k,comps
                 def make_comparison(A,B,Aprime,Bprime,seg):
                     # original
@@ -108,7 +107,7 @@ def test_segment_hausdorff(A,B,a,verbose=False, titleprefix="",savefolder= ""):
     if savefolder != "" and savefolder != None:
         imagefile = r"{}\{}.png".format(savefolder,titleprefix)
         dpi = 150
-    plot_hausdorff_solution(A, a, B, title = "{}:  {}".format(titleprefix, msg), imagefile = imagefile, show_labels = True,dpi = dpi)
+    plot_hausdorff_solution(A, a, B, title = f"{titleprefix}:  {msg}", imagefile = imagefile, show_labels = True,dpi = dpi)
 
 
 def test_all_segment_hausdorffs(A,B,verbose=False,titleprefix="",do_reverse = False,savefolder=None):
@@ -156,7 +155,7 @@ def printComponentInfo(A,B,a,comps):
         print("{}: {}".format(hu.component_label(c),cei))
     
     print("\n")
-
+  
 def test_all_cases_visually(savefolder = None):
     for s in range(case(-1)):
         print("CASE {}".format(s))
@@ -169,27 +168,10 @@ def test_all_cases_visually(savefolder = None):
     print("locations, indicating the location(s) on the blue polyline that are ")
     print("closest to the red point.")
 
-def test_overlap():
-    A,B = case(2)
-    verbose = True
-    test_segment_hausdorff(A,B,1,verbose,"overlap ")
-
-
-
-#unittest.main()193
-# plot_hausdorff_solution(A, 0, B, show_labels = True, k_use_hausdorff=False,k=0.15)
-# hu.distanceRepresentation(A, B, 0, (True,3))
-# test_overlap()
-
-# savefolder = r"C:\temp"               
-savefolder = ""
-# test_all_cases_visually(savefolder = savefolder)
+unittest.main()
+savefolder = r"C:\temp\Hausdorff_test"
+test_all_cases_visually(savefolder = savefolder)
                
-case_number = 1
-seg = 0
-A,B = case(case_number)
-msg = "case {}_s{}".format(case_number,seg)
-test_segment_hausdorff(A,B,seg,True,msg)
 
 
 print("\nfinished.")

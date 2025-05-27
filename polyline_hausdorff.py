@@ -1,20 +1,17 @@
 # -*- coding: utf-8 -*-
 """
-Calculates the Hausdorff distance between two polylines
-following the method described in:
+Calculates the Hausdorff and average distances between two polylines
+following the method described in the following:
+
 J.F. Hangouet (1995). Computation of the Hausdorff distance between plane 
 vector polylines. Proceedings, Auto Carto 12, pp. 1-10.
 
-A joint project of the Spring 2021 semester GEO 4910 class at Eastern Illinois 
-University.
+Several modifications were made to the algorithm, described in:
 
-Team members:
-    Luke Jansen
-    Tanner Jones
-    Farouk Olaitan
-    Megshi Thakur
-    Barry Kronenfeld (Instructor)
-    
+<manuscript in review>
+
+<project history redacted for anonymous peer review>
+
 License: MIT License
 
 If you publish or create derivate software using this code, acknowledgement 
@@ -59,76 +56,6 @@ import utils_geom as g
 import utils_hausdorff as hu
 import integrals
 
-def polyline_hausdorff(A,B):
-    """
-    ***deprecated, should use Hausdorff_average_distance function***
-    
-    Computes the Hausdorff distance between two polylines, i.e. the maximum
-    distance from any point on either polyline to the nearest point on the
-    other polyline.
-
-    Parameters
-    ----------
-    A : [(x,y),...] list of tuples 
-        The coordinates of a polyline.
-    B : [(x,y),...] list of tuples 
-        The coordinates of another polyline.
-    
-    Returns
-    ----------
-    h_dist : float
-        The Hausdorff distance between the polylines.
-    srcloc : (float,float)
-        The location of the source of the Hausdorff distance.
-        The source location is the location on either polyline that is furthest 
-        from the nearest location on the other polyline.
-    srcline : int
-        Flag to indicate the source polyline. 
-        If 0, the source location is on polyline A. 
-        If 1, the source location is on polyline B.
-    srccomp : (bool,int)
-        The index of the component (vertex or segment) of the source polyline 
-        containing the source location. 
-        If bool is True then srccomp is a segment, otherwise it is a vertex.
-    trglocs : [(x,y),xy]
-        The location of the target of the Hausdorff distance.
-    trgcomps : [(bool, int)]
-        List of components of the target polyline that is equally close to 
-        the source location. If the source component is a segment then then 
-        there will usually be two equidistant nearest locations on the target 
-        polyline.    
-    """
-    # check in both directions
-    h_dist_a,srcloca,srccompa,trgcompsa = directional_polyline_hausdorff(A,B)
-    h_dist_b,srclocb,srccompb,trgcompsb = directional_polyline_hausdorff(B,A)
-    # determine which is source and which is target    
-    if h_dist_a > h_dist_b:
-        srcloc = srcloca
-        srcline = "A"
-        trgline = B
-        srccomp = srccompa
-        trgcomps = trgcompsa
-        h = h_dist_a        
-    else:
-        srcloc = srclocb
-        srcline = "B"
-        trgline = A
-        srccomp = srccompb
-        trgcomps = trgcompsb
-        h = h_dist_b
-    # determine target location(s)
-    trglocs = [hu.nearLoc(srcloc,trgline,trgcomp) for trgcomp in trgcomps]
-    
-    # report results
-    return h,srcloc,srcline,srccomp,trglocs,trgcomps
-
-
-# from dataclasses import dataclass, field
-
-# @dataclass
-# class HausdorfResults:
-#     H: float = field(description='')
-    
 def hausdorff_average_distance(A,B,verbose = False,brute_force = False):
     """
     Computes the one-way Hausdorff and average distance from A to B
@@ -168,7 +95,6 @@ def hausdorff_average_distance(A,B,verbose = False,brute_force = False):
         vNearComp.append(comp)
         vNearLoc.append(nearloc)
         vertDist.append(d)
-
     # traverse segments on A tracking nearest components on B
     tot_area = 0
     tot_len = 0
@@ -194,6 +120,7 @@ def hausdorff_average_distance(A,B,verbose = False,brute_force = False):
         tot_len += L
         area = segment_dist_integral(near_comps, L)
         tot_area += area
+
 
     # handle final vertex
     a = len(A) - 1
@@ -258,84 +185,6 @@ def near_components(A,B):
             a_k_d_comp_rep.append((a,k,d,comp,rep))
     return a_k_d_comp_rep
 
-def directional_polyline_hausdorff(A,B,brute_force = False):
-    """
-    ***deprecated, we shouldn't need this anymore***
-    
-    Computes the one-way Hausdorff distance from A to B, i.e. the maximum
-    distance from any point on A to the nearest point on B.
-
-    Parameters
-    ----------
-    A : [(x,y),...] list of tuples 
-        The coordinates of the main polyline.
-    B : [(x,y),...] list of tuples 
-        The coordinates of the other polyline.
-    Returns
-    ----------
-    H : float
-        The unidirectional Hausdorff distance between the polylines.
-    loc : (float, float)
-        The location on A that is the source of the Hausdorff distance.
-    srcComp : (bool,int)
-        The component of A that is the source of the Hausdorff distance.
-    trgComp1 : (bool, int)
-        A component of B that is the target of the Hausdorff distance.
-    trgComp2 : (bool, int)
-        Another component of B that is the target of the Hausdorff distance, or
-        None if there is only one target component.
-    """
-
-    # initialize component and distance lists
-    vNearComp = []
-    vNearLoc = []
-    vertDist = []
-    # create index of B segments
-    B_seg_idx = hu.seg_idx(B)
-
-    # get distance from each vertex on A to its nearest component on B
-    for a in range(len(A)):
-        b = hu.nearSegment(A, B, a, B_seg_idx)
-        comp, nearloc, d = hu.nearComponent(A, B, a, b)
-        vNearComp.append(comp)
-        vNearLoc.append(nearloc)
-        vertDist.append(d)
-
-    segsToCheck = [a for a in range(len(A)-1) if hu.checkSegment(vNearComp[a],vNearComp[a+1])]
-    # get distance from segments on A to nearest components on B
-    d_k_comps = []
-    for a in segsToCheck:
-        comp_list = hu.candidateComponents(
-            A,B,a,
-            vNearLoc[a],vNearLoc[a+1],
-            vertDist[a],vertDist[a+1],
-            B_seg_idx,brute_force
-            )
-        near_comps = segment_traversal(A, B, a, vNearComp[a],vertDist[a],vNearComp[a+1],vertDist[a+1], comp_list)
-        d,k,comps = segment_hausdorff(near_comps)
-#         d,k,comps = segment_hausdorff(A, B, a, vNearComp[a],vertDist[a],vNearComp[a+1],vertDist[a+1], comp_list)
-        d_k_comps.append((d,k,comps))
-    # Hausdorff distance is maximum of distances from vertices and segments
-    use_vert = True
-    maxVertDist = max(vertDist)
-    if len(d_k_comps)!=0:
-        maxSegInfo = max(d_k_comps, key = lambda x: x[0])
-        if maxSegInfo[0] >= maxVertDist:
-            use_vert = False
-    if use_vert:
-        a = vertDist.index(maxVertDist)
-        loc = A[a]
-        srcComp = (False,a)
-        trgComps = [vNearComp[a]]
-        H = maxVertDist
-    else: # use segment
-        a = segsToCheck[d_k_comps.index(maxSegInfo)]
-        d,k,trgComps = maxSegInfo
-        loc = g.location(A,a,k)
-        srcComp = (True,a)
-        H = d
-    
-    return H,loc,srcComp,trgComps
 
 def segment_hausdorff(seg_traversal, verbose = False):
     """
@@ -600,32 +449,21 @@ def _updateComponent(A,B,a,comps, eis, drs, prev_id, prev_ei, verbose=False, tol
                         print("      no crossings found")
                 for k in ks:
                     if verbose:
-                        if (k < 0 - tol) or (k > 1):
-                            print(f"      crossing k ({k}) is not between 0-1")
-                        else:
-                            print(f"crossing k ({k}) seems okay...")
+                        print(f"k: {k}")
                     if 0 - tol <= k <= 1: # crossing k is between 0-1
                         if verbose:
-                            if (k < prev_ei[0]-tol) or (k > prev_ei[1]+tol):
-                                print("      cross point in effective interval of previous component")
+                            print("    crossing k between 0 & 1...")
                         if prev_ei[0]-tol <= k <= prev_ei[1]+tol:  
-                            # Cross point in effective interval of previous component
                             if verbose:
-                                if (k < cand_ei[0]-tol) or (k > cand_ei[1]+tol):
-                                    print("      Cross point in effective interval of this candidate")
-                            if cand_ei[0]-tol <= k <= cand_ei[1] + tol:   
+                                print(f"    crossing k in prev ei ({prev_ei})")
+                            if cand_ei[0]-tol <= k <= cand_ei[1] - tol:   
+                                if verbose:
+                                    print(f"    crossing k in cand ei ({cand_ei})")
                                 # cross point in effective interval of new candidate
                                 # note we want to go forward not backward
-                                if verbose:
-                                    if cand_ei[1] <= prev_ei[0] - tol:
-                                        print("      moving backwards")
                                 if cand_ei[1] > prev_ei[0] - tol: 
-                                    # moving forward    
-                                    if k < cand_k[cand_id]:
-                                        cand_k[cand_id] = k
                                     if verbose:
-                                        if k >= k_min:
-                                            print("      k >= k_min")
+                                        print(f"    cand ei ({cand_ei[1]}) end after prev ei ({prev_ei[0]}) start")
                                     if k < k_min: # probably this is redundant!
                                         # we might have a new winner
                                         # but need to check distance at tolerance
@@ -642,6 +480,9 @@ def _updateComponent(A,B,a,comps, eis, drs, prev_id, prev_ei, verbose=False, tol
                                         if passes_tolerance_test:
                                             if verbose:
                                                 print("      PASSED ALL TESTS!!!")
+                                            # moving forward    
+                                            if k < cand_k[cand_id]:
+                                                cand_k[cand_id] = k
                                             k_min = k
                                             new_comp_id = cand_id
     
@@ -661,6 +502,7 @@ def _updateComponent(A,B,a,comps, eis, drs, prev_id, prev_ei, verbose=False, tol
     # *** Hangout says to move to next sequential vertex, 
     #     but actually we have to check both sides
     if new_comp_id == -1 and prev_ei[1] < 1:
+        
         # let's see if this is ever invoked
         comp_label = hu.component_label(comps[prev_id])
         # (print)("   adjacent component search invoked from {}".format(comp_label))
@@ -697,11 +539,30 @@ def _updateComponent(A,B,a,comps, eis, drs, prev_id, prev_ei, verbose=False, tol
             # use new component only if we are moving forward along a
             if max(new_ei) < min(prev_ei):
                 return (-1,None,None,None)
-            
+    # EXPERIMENTAL
+    if new_comp_id == -1 and prev_ei[1] < 1:
+        # print("Experimental code got us a different result...")
+        # find component with shortest distance at {}if prev_v
+        k = prev_ei[1]
+        new_comp_id = -1
+        new_ei = []
+        d_min = float('inf')
+        L = g.distance(A[a],A[a+1])
+        for cand_id in range(len(comps)):        
+            if cand_id != prev_id: # can't return same component!
+                cand_dr = drs[cand_id] #  distance representation of new candidate
+                cand_ei = eis[cand_id] #  effective interval of new candidate    
+                if cand_ei[0] - tol < k < cand_ei[1] - tol:
+                    d = hu.componentDistance(cand_dr, k, L)
+                    if d < d_min:
+                        new_comp_id = cand_id
+                        d_min = d
+                        new_ei = [k + tol * 2,cand_ei[1]]
+    
     # check that a new component was found
     if new_comp_id == -1:
         return (-1,None,None,None)
-    else:
+    else:  
         # calculate distance at switch point        
         k = new_ei[0]        
         len_a = g.distance(A[a],A[a+1])

@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed May 26 13:30:22 2021
-
-@author: bjkronenfeld
 """
 import unittest
 import matplotlib.pyplot as plt
@@ -26,7 +24,7 @@ def drawLines(lineList,title="", lastFigure = False):
 class Hausdorff_utils_tests(unittest.TestCase):
     """Tests the functions in Hausdorff_utils.py"""
     def setUp(self):
-        self.verbose = False
+        self.verbose = True
         self.showPlots = False
 
     def test_componentDistance(self):

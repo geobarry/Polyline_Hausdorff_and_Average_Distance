@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu Aug  8 09:05:25 2024
-
-@author: Administrator
+Old (?) code to a simplify cannonball river using Ramer/Douglas Peucker and APSC algorithms
 """
 
 import utils_data

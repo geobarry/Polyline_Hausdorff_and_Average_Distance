@@ -2,9 +2,6 @@
 """
 Integrals of the vertex and segment distance functions required for
 calculating the average distance from one polyline to another.
-
-Created on Fri Oct 27 14:56:55 2023
-@author: Barry Kronenfeld
 """
 import math
 import utils_hausdorff
@@ -109,4 +106,4 @@ def segment_integral(L,k0,k1,dr):
     
     
     
-    
+        

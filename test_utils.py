@@ -89,6 +89,11 @@ def case(casenum):
     A = [(0, 0), (5, 0)] # plotting code assumes a horizontal line beginning at (0,0)
     B = [(2.4, -1), (2.5, -0.4), (4.5, -0.9), (6.4, 0.8), (4, 0.5), (2, 2.3), (0.5, 0.5)]
     cases.append((A,B))
+
+    # 12 Error from Bangladesh India border
+    A = [(-137836.32279999927, 134082.97149999999), (-137788.48629402026, 134086.9687685027), (-137704.0982999988, 134026.8258999996)]
+    B = [(-137836.32279999927, 134082.97149999999), (-137832.76720000058, 134084.24200000055), (-137821.50789999962, 134084.6769999992), (-137819.03049999848, 134084.77300000004), (-137819.02679999918, 134084.77309999987), (-137794.6612999998, 134085.08929999918), (-137788.21620000154, 134082.34490000084), (-137783.47899999842, 134080.32760000043), (-137777.86740000173, 134077.82509999909), (-137766.20949999988, 134072.62629999965), (-137747.79729999974, 134059.49110000022), (-137747.78990000114, 134059.48560000025), (-137729.87909999862, 134045.57430000044), (-137714.54670000076, 134034.56849999912), (-137704.0982999988, 134026.8258999996)]
+    cases.append((A,B))
     
     # * cleanup *
     if casenum == -1:
@@ -110,7 +115,7 @@ def plot_hausdorff_solution(
         k_resolution = 0.005, # spacing of points along segment
         k_buffer = 0.0, # plotted overlap between adjacent near components
         stop_distance_function_at_k = False,
-        dpi = 90,
+        dpi = 300,
         label_start_finish = False
         ):
     # Plots the input lines with the location (of the far Hausdorff location) 
@@ -131,7 +136,7 @@ def plot_hausdorff_solution(
     len_a = g.distance(A[a],A[a+1])
     
     # calculate average distance
-    avgD = h.segment_dist_integral(near_comps, len_a, verbose = True)/len_a
+    avgD = h.segment_dist_integral(near_comps, len_a, verbose = False)/len_a
     
     # determine which k-value will be the focus
     if k_use_hausdorff:
@@ -189,7 +194,7 @@ def plot_hausdorff_solution(
     plot_top = plot_top + spany
     
     # set up plot
-    plt.figure(dpi = dpi)
+    plt.figure(figsize = (6,4),dpi = dpi)
     plt.axis([plot_left,plot_right,plot_bottom,plot_top])
     plt.gca().set_aspect('equal', adjustable='box')
 
@@ -359,8 +364,8 @@ def plot_hausdorff_solution(
         # print("**********************")
         # print("saving to {}".format(imagefile))
         plt.savefig(imagefile)
-        plt.clf()
-        plt.close
+        #plt.clf()
+        #plt.close
     else:
         # print("**********************")
         # print("showing in interpreter:")

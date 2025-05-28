@@ -19,7 +19,9 @@ To run this code, you will first need to install the following python packages
 - pyshp (https://pypi.org/project/pyshp/)
 - numpy, scipy, matplotlib
 
-Run the following modules to reconstruct figures and data in the submitted manuscript:
+Run the following modules to reconstruct figures and data in the submitted manuscript. 
+Explanations and parameters to modify (e.g. folders to save results to) are at the top
+of each module:
 - Figure 2: figure_2_hausdorff_comparison.py
 - Figures 6, 7 & 12: animation_creator.py
 - Figure 10: figure_10a_construct_images.py, figure_10b_tile_images.py

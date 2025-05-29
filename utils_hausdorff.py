@@ -771,6 +771,9 @@ def vertSegSwitchPoint(vdr, sdr, from_vertex = True, tol = 0.00000001):
     @author: Folaitan & Ljansen; directionality introduced by BK
     """
     verbose = False
+    if verbose:
+        print(f"FUNCTION vertSegSwitchPoint")
+        print(f"sdr: {sdr} | vdr: {vdr} | from_vertex: {from_vertex}")
     # get distance representation values into more readable variables
     k_vert = vdr[1]
     q_vert = vdr[2]
@@ -780,12 +783,14 @@ def vertSegSwitchPoint(vdr, sdr, from_vertex = True, tol = 0.00000001):
     
     # three cases: segment b perpendicular, parallel, or oblique to A
     if abs(sin_theta) == 1: 
+        if verbose:
+            print("abs(sin_theta) == 1")
         # b segment is perpendicular to A
         # only return a crossing if second component is right of first        
         if k_seg == k_vert:
             # point and line have same k-value, so no switching
             return []
-        elif from_vertex != (k_vert > k_seg):
+        elif from_vertex == (k_vert > k_seg):
             # going from vertex to segment but vertex is to the right
             # or else going from segment to vertex but segment is to the right
             # so no switching

@@ -5,9 +5,9 @@ Combines images produced by "figure_10a_construct_images.py".
 ##################################################
 # PARAMETERS
 # full path to folder containing output images produced by "figure_10a_construct_images.py"
-folder_containing_images = r"C:\temp\figures\figure_10"
+folder_containing_images = "results\\Hausdorff_still_frames"
 # folder to save final combined figure
-save_folder = r"C:\temp\figures\figure_10"
+output_file = "results\\figure_10_synthetic_data.png"
 ##################################################
 
 from PIL import Image, ImageDraw, ImageFont
@@ -40,5 +40,4 @@ for row in range(2):
         txt_x = (col + 1/2) * wd
         txt_y = row * row_ht + ht
         draw.text((txt_x,txt_y),f"({lbl})",font = font,fill = (0,0,0))
-f = f"{save_folder}\\figure_10.png"
-new_image.save(f)
+new_image.save(output_file)

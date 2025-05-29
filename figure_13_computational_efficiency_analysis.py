@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 """
-Produces data used in Figure 12 & Table 2, comparing computed values and computation time of exact and approximate methods.
+Produces data used in Figure 13, measuring computation time 
+for five series of input data with increasing size.
 """
 ##################################################
 # PARAMETERS
 # folder containing the shapefiles that came with this project
-sample_data_folder = r"C:\Users\barry\CaGIS Board Dropbox\cantaloupe bob\Barry\Research\Projects\polyline difference metrics\Hausdorff\git_code\sample_data\original"
+sample_data_folder = r"sample_data\original"
 # full path to file to save results to (*.csv)
-output_file = r"C:\\temp\\figures\\figure_13\\computational_efficiency.csv"
+output_file = r"results\Figure_13_computational_efficiency_data.csv"
 ##################################################
 
 from utils_timing import time_test_unequal

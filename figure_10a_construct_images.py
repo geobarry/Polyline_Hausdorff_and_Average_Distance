@@ -4,11 +4,14 @@ Constructs images of all synthetic test cases used for algorithm and code valida
 """
 ##################################################
 # PARAMETERS
-# full path to folder to save results to; this should be an empty folder
-save_folder = f"C:\\temp\\figures\\figure_10"
+# path to folder to save results to; this should be an empty folder
+save_folder = "results\\Hausdorff_still_frames"
 ##################################################
 
 from test_utils import case, plot_hausdorff_solution
+import os
+
+os.makedirs(save_folder,exist_ok = True)
 
 for id in range(case(-1)):
     print(f"GROUP {id}")

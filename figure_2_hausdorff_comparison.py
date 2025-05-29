@@ -5,8 +5,8 @@ Reproduces Figure 2, with additional information on results of scipy and shapely
 
 ##################################################
 # PARAMETERS 
-# full path of file to save resulting image to
-output_file = r"C:\temp\figures\figure_2\Hausdorff_variations.png"
+# path of file to save resulting image to
+output_file = r"results\figure_2_hausdorff_variations.png"
 ##################################################
 
 # Import main module and utilities

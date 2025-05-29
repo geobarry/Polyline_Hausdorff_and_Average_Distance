@@ -1,15 +1,19 @@
 # -*- coding: utf-8 -*-
 """
-Produces data used in Figure 12 & Table 2, comparing computed values and computation time of exact and approximate methods.
+Produces data used in Figure 14 & Table 3, comparing computed values and computation time of exact and approximate methods
+for increasing precision of approximation (i.e. decreasing vertex spacing). This will take a while to run - you may want to 
+decrease the value of the "levels" parameter for faster results.
 """
 ##################################################
 # PARAMETERS
-# folder containing the shapefiles that came with this project
-sample_data_folder = r"C:\Users\barry\CaGIS Board Dropbox\cantaloupe bob\Barry\Research\Projects\polyline difference metrics\Hausdorff\git_code\sample_data\original"
-# full path to file to save results to (*.csv)
-output_file = r"C:\\temp\\figures\\figure_12\\timing_comparison.csv"
-# use 5 levels for code testing, will take about 5 minutes; change to 13 for manuscript data reproduction
+# levels of increasing precision for approximations:
+#  - use 5 levels for code testing, will take about 5-10 minutes
+#  - use 13 levels for manuscript data reproduction
 levels = 5
+# folder containing the shapefiles that came with this project
+sample_data_folder = r"sample_data\original"
+# path to file to save results to (*.csv)
+output_file = "results\\figure_14_exact_vs_approximate.csv"
 ##################################################
 
 from utils_timing import compare_with_approx

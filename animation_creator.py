@@ -1,26 +1,31 @@
 # -*- coding: utf-8 -*-
 """
-This module constructs image frames for animations, which can be combined into a video using e.g. ffmpeg.
-Making videos with ffmpeg (usually comes with windows, maybe other os's also):
- - images must have sequence by numbers (no leading zeroes)
- - first cd into the folder with your image sequence
- - then enter the following command into a command prompt:
+This module constructs image frames for animations, which were combined into videos for assessment using ffmpeg.
+Frames are saved to the folder "results\animation_frames".
+Image frames used as figures in the manuscript are as follows:
+
+Figure 6: 7_0\k_0_750.png
+Figure 7: 5_1\k_0_360.png
+
+If you wish to reconstruct videos with ffmpeg (usually comes with windows, maybe other os's also; if not, install from https://ffmpeg.org/):
+ - open a command prompt
+ - cd into the folder with your image sequence
+ - enter the following command into a command prompt:
 
 ffmpeg -framerate 30 -i k_%d.png -c:v libx264 -r 30 -pix_fmt yuv420p animation.mp4
 
-Parameters you are most likely to want to change:
+Parameters in above that you might to want to change:
  10	               input images per second
  k_%d.png          file name; %d will be replaced by numbers
  -r 30             output frames per second
  animation.mp4     output file name
 """
-base_image_folder = r'c:\temp\animation'
+base_image_folder = r'results\animation_frames'
+cases = [(5,1,False),(7,0,False)] # Parameters to create figures 6, 7=12
 
 import test_utils as tu
 import os
 import numpy as np
-
-cases = [(5,1,False),(7,0,False)] # Parameters to create figures 6, 7=12
 
 # uncomment the following to create animations for all test cases
 # n = tu.case(-1)

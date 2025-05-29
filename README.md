@@ -17,14 +17,15 @@ To run this code, you will first need to install the following python packages
         - pip install Rtree-0.8.3-cp27-cp27m-win32.whl
 - sortedcontainers (https://pypi.python.org/pypi/sortedcontainers)
 - pyshp (https://pypi.org/project/pyshp/)
-- numpy, scipy, matplotlib
+- numpy, scipy, matplotlib (these come with most python installations already)
 
 Run the following modules to reconstruct figures and data in the submitted manuscript. 
-Explanations and parameters to modify (e.g. folders to save results to) are at the top
+You should be able to just run each module without altering anything, but explanations 
+and optional parameters to modify (e.g. folders to save results to) are at the top
 of each module:
 - Figure 2: figure_2_hausdorff_comparison.py
-- Figures 6, 7 & 12: animation_creator.py
+- Figures 6 & 7: animation_creator.py
 - Figure 10: figure_10a_construct_images.py, figure_10b_tile_images.py
 - Figure 11: data are contained in the folder “sample_data”.
-- Figure 12 & Table 2: figure_12_table_2_timing_comparison.py
 - Figure 13: figure_13_computational_efficiency_analysis.py
+- Figure 14 & Table 3: figure_14_table_3_timing_comparison.py

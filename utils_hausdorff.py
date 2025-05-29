@@ -194,7 +194,7 @@ def effectiveInterval(A,B,a,bcomp):
     -------
     tuple of two k-values
 
-    @author: Folaitan & TJones
+    @author: FO & TJ
     """
     # if statement to determine if bcomp is a segment or vertex
     if bcomp[0] == True:
@@ -221,7 +221,7 @@ def segDistance(dr,k,len_a):
     float
         The distance from dr to k on segment a.
         
-    @author: megshithakur and Farouk
+    @author: MT and FO
     """
     # check if segments are parallel
     if dr[1] == None:
@@ -373,7 +373,7 @@ def segEffectiveInterval(A,B,a,b, tolerance=0.000001):
         k2 : float
             Second k-value of effective interval.
             
-    @author: megshithakur and tannerjones
+    @author: MT and TJ
     """
     a1 = A[a]
     a2 = A[a+1]
@@ -457,7 +457,7 @@ def vertDistance(dr, k, len_a):
         the distance from point k on segment a to the vertex of B represented 
         by dr
         
-    @author: Folaitan & @Ljansen
+    @author: FO & @LJ
     """
     d = ((k-dr[1])**2) + (dr[2]**2)
     d = m.sqrt(d)
@@ -536,7 +536,7 @@ def vertEffectiveInterval(A,B,a,b,tolerance=0.000001):
         interval.
         
     
-    @author: megshithakur and tannerJones
+    @author: MT and TJ
     """
     # get coordinates
     a1, a2 = A[a],A[a+1]
@@ -690,7 +690,7 @@ def segSegSwitchPoint(dr1, dr2, tol = 0.00000001):
     -------
     List of 1 float representing k-value of the switch points
     
-    @author: Folaitan & Ljansen; directional component added by BK
+    @author: FO & LJ; directional component added by BK
     """
     k = []
     if dr1[1] == None and dr2[1] == None: # both segments parallel to a
@@ -768,7 +768,7 @@ def vertSegSwitchPoint(vdr, sdr, from_vertex = True, tol = 0.00000001):
     List containing 0 or 1 floats representing the k-values of 
     the switch point if it exists
     
-    @author: Folaitan & Ljansen; directionality introduced by BK
+    @author: FO & LJ; directionality introduced by BK
     """
     verbose = False
     if verbose:

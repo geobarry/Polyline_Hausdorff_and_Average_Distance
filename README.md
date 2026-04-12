@@ -23,9 +23,10 @@ Run the following modules to reconstruct figures and data in the submitted manus
 You should be able to just run each module without altering anything, but explanations 
 and optional parameters to modify (e.g. folders to save results to) are at the top
 of each module:
-- Figure 2: figure_2_hausdorff_comparison.py
-- Figures 6 & 7: animation_creator.py
-- Figure 10: figure_10a_construct_images.py, figure_10b_tile_images.py
-- Figure 11: data are contained in the folder “sample_data”.
-- Figure 13: figure_13_computational_efficiency_analysis.py
-- Figure 14 & Table 3: figure_14_table_3_timing_comparison.py
+- Figure 1: figure_1_hausdorff_comparison.py
+- Figure 8: figure_8a_construct_images.py, figure_8b_tile_images.py
+- Figure 9: data are contained in the folder “sample_data”.
+- Figure 10: figure_10_computational_efficiency_analysis.py
+- Figure 11 & Table 3: figure_11_table_3_discrete_comparison.py
+
+You can also view sample animations contained in the animations folder.

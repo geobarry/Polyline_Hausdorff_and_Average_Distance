@@ -3,6 +3,7 @@
 test data for testing and illustrating Hausdorff distance
 """
 
+import matplotlib
 import matplotlib.pyplot as plt
 import math
 import utils_geom as g
@@ -123,6 +124,10 @@ def plot_hausdorff_solution(
 
     # turn off interactive mode
     plt.ioff()
+    
+    # avoid out of memory errors
+    if imagefile != "" and imagefile != None:
+        matplotlib.use("Agg")
 
     # determine Hausdorff solution
     B_idx = hu.seg_idx(B)
@@ -197,6 +202,8 @@ def plot_hausdorff_solution(
     plt.figure(figsize = (6,4),dpi = dpi)
     plt.axis([plot_left,plot_right,plot_bottom,plot_top])
     plt.gca().set_aspect('equal', adjustable='box')
+
+    fig=plt.gcf()
 
     # highlight nearest component
     b = near_comp[1]
@@ -346,7 +353,7 @@ def plot_hausdorff_solution(
         title = ''
     else:
         title = title + "          "
-    title = title + "A: orAnge     B: Blue\n"
+#    title = title + "A: orAnge     B: Blue\n"
     
     # construct plot title
     # msg = " -> ".join([hu.component_label(near_comps[i][2])for i in range(len(near_comps))])
@@ -355,7 +362,7 @@ def plot_hausdorff_solution(
         msg += "    Avg dist: {:.3f}".format(avgD)
     else:
         msg = "dist: {:.3f} (k = {:.3f})".format(d,k)
-    title = title + msg
+#    title = title + msg
     
     plt.suptitle(title, fontsize = 9)
 
@@ -365,10 +372,10 @@ def plot_hausdorff_solution(
         # print("saving to {}".format(imagefile))
         plt.savefig(imagefile)
         #plt.clf()
-        #plt.close
+        plt.close(fig)
     else:
         # print("**********************")
         # print("showing in interpreter:")
         plt.show()
         plt.clf()
-        plt.close()
+        plt.close(fig)

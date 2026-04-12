@@ -1,1 +1,0 @@
-This code needs to be moved into the Hausdorff git_code folder to function properly. It has been removed for anonymous review.

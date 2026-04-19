@@ -67,10 +67,10 @@ You can also view sample animations contained in the animations folder.
 # Credits
 Details about the algorithms implemented in this code can be found in the following journal article:
 
-> Barry Kronenfeld, Barbara P. Buttenfield, Lawrence V. Stanislawski and Ethan Shavers. Efficient Computation for Continuous Hausdorff and Average Euclidean Distance between Polylines. International Journal of Geographical Information Systems (Accepted: 04-Mar-2026) 
+> Barry Kronenfeld, Barbara P. Buttenfield, Lawrence V. Stanislawski and Ethan Shavers. Efficient Computation for Continuous Hausdorff and Average Euclidean Distance between Polylines. International Journal of Geographical Information Systems (accepted: 04-Mar-2026) 
 
 Initial development of the Hausdorff distance computation was performed as a class project
-by students in GEO 4910 GIS Programming at Eastern Illinois University in Spring 2021. 
+by students in _GEO 4910: GIS Programming_ at Eastern Illinois University in Spring 2021. 
 
 Student Team Members:
 - Luke Jansen

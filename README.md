@@ -11,7 +11,9 @@ $$
 \bar{d}_{A \to B} = \int_{a \in A} \left[ \min_{b \in B} d_{a,b} \right] / \mid A \mid
 $$
 
+These distances are illustrated below:
 
+![distance illustrations](./readme_images/distance_illustrations.png)
 
 # Running the Code
 It is assumed that you already have python v.3x installed and know how to 

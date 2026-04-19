@@ -7,13 +7,16 @@ $$H_{A \to B} = \max_{a \in A} \left[ \min_{b \in B} \, d_{a,b} \right]$$
 
 The average distance is the average of distances between all points on A and the nearest corresponding point on B, where the average is computed as the integral of the distance function divided by the length of A:
 
-\[ 
-\bar{d}_{A \to B}=\frac{
+$$
+\bar{d}_{A \to B}
+=
+\frac{
     \displaystyle \int_{a \in A} \left[ \min_{b \in B} d_{a,b} \right]
 }{
-    \operatorname{len}(A)
+    |A|
 }
-\]
+$$
+
 
 # Running the Code
 It is assumed that you already have python v.3x installed and know how to 

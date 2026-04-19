@@ -30,3 +30,12 @@ of each module:
 - Figure 11 & Table 3: figure_11_table_3_discrete_comparison.py
 
 You can also view sample animations contained in the animations folder.
+
+ACKNOWLEDGMENTS
+Initial development of the Hausdorff distance computation was a joint project
+of the Spring 2021 semester GEO 4910 GIS Programming class at Eastern Illinois University.
+Student Team Members:
+    Luke Jansen
+    Tanner Jones
+    Farouk Olaitan
+    Megshi Thakur

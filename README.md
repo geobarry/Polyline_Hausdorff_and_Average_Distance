@@ -1,23 +1,25 @@
 # About
 This repository contains code to calculate the continuous directed Hausdorff and average distances between two polylines (A & B) embedded in a standard 2d cartesian coordinate system. 
 
-The Hausdorff distance is the largest gap one would have to cross to get from A to B:
-
-$$H_{A \to B} = \max_{a \in A} \left[ \min_{b \in B} \, d_{a,b} \right]$$
-
 The average distance is the average of distances between all points on A and the nearest corresponding point on B, where the average is computed as the integral of the distance function divided by the length of A:
 
 $$
 \bar{d}_{A \to B} = \int_{a \in A} \left[ \min_{b \in B} d_{a,b} \right] / \mid A \mid
 $$
 
-These distances are illustrated below:
+The Hausdorff distance is the maximum of these distances:
+
+$$H_{A \to B} = \max_{a \in A} \left[ \min_{b \in B} \, d_{a,b} \right]$$
+
+The vectors used in the calculation of each distance metric are illustrated below:
 
 ![distance illustrations](./readme_images/distance_illustrations.png)
 
-The directed average distance is the average of directional distances from each point on A to the nearest point on B. The Hausdorff distance is the maximum of these directional distances. Note that although the above illustrations show a finite number of distance vectors, the algorithm computes these distances based on a continuous traversal of polyline A. This distinguishes the continuous metrics computed by here from distance metrics that incorporate only vertices of one or both polylines. For example, the figure below shows the difference between the continuous Hausdorff distance ($H_{A \to B}$) from the Hausdorff distance between vertices of both polylines ($H_{v_A \to v_B}$) and from vertices of one polyline to the other polyline in its entirety ($H_{v_A \to B}$):
+Only a finite number of vectors are shown, but the algorithm computes distances based on a continuous traversal of polyline A. This distinguishes the continuous metrics computed here from approximations that incorporate only vertices of one or both polylines, as illustrated below: 
 
 ![Hausdorff variations](./readme_images/hausdorff_variations.png)
+
+This illustration shows that significant differences can occur between the continuous Hausdorff distance ($H_{A \to B}$) and two common approximations: the Hausdorff distance between vertices of both polylines ($H_{v_A \to v_B}$) and from vertices of one polyline to the other polyline in its entirety ($H_{v_A \to B}$).
 
 # Running the Code
 It is assumed that you already have python v.3x installed and know how to 

@@ -18,7 +18,7 @@ Vectors used in the calculation of each distance metric are illustrated below:
 <img src="./readme_images/distance_illustrations.png?v=1" height="300px">
 </p>
 
-Only a finite number of vectors are shown, but the algorithm computes distances based on a continuous traversal of polyline A. This distinguishes the continuous metrics computed here from approximations that incorporate only vertices of one or both polylines. The image below illustrates differences between the continuous Hausdorff distance ($H_{A \to B}$) and two common approximations: the Hausdorff distance between vertices of both polylines ($H_{v_A \to v_B}$) and from vertices of one polyline to the other polyline ($H_{v_A \to B}$).
+Only a finite number of vectors are shown, but the algorithm computes distances based on a continuous traversal of polyline A. This distinguishes the continuous metrics computed here from approximations that incorporate only vertices of one or both polylines. The image below illustrates differences between the continuous Hausdorff distance $(H_{A \to B})$ and two common approximations: the Hausdorff distance between vertices of both polylines ($H_{v_A \to v_B}$) and from vertices of one polyline to the other polyline ($H_{v_A \to B}$).
 
 <p align="center">
 <img src="./readme_images/hausdorff_variations.png?v=1" height="300px">

@@ -29,7 +29,7 @@ As the above illustration shows, significant differences can occur between the c
 To compute the average and Hausdorff distances, the algorithm constructs a function representing the distance from every point on A to the nearest point on B:
 
 <p align="center">
-<img src=".1Hangouët_example_social_preview.gif" height="300px">
+<img src="Hangouët_example_social_preview.gif" height="300px">
 </p>
 
 This distance function can be captured and used for additional analysis, e.g. to compute the proportion of A within a prescribed distance of B.

@@ -1,3 +1,8 @@
+# ABOUT
+This repository contains code to calculate the continuous Hausdorff and average distances between two polylines. 
+
+
+
 This repository contains code for review, associated with a submission to the 
 International Journal of Geographical Information Science. 
 It is assumed that you already have python v.3x installed and know how to 
@@ -31,13 +36,21 @@ of each module:
 
 You can also view sample animations contained in the animations folder.
 
-ACKNOWLEDGMENTS
+# ACKNOWLEDGMENTS
+Details about the algorithms implemented in this code can be found in our journal article in International Journal of Geographical Information Systems:
+
+> Title: Efficient Computation for Continuous Hausdorff and Average Euclidean Distance between Polylines
+> Authors: Barry Kronenfeld, Barbara P. Buttenfield, Lawrence V. Stanislawski and Ethan Shavers
+> Accepted: 04-Mar-2026
+
 
 Initial development of the Hausdorff distance computation was a joint project
-of the Spring 2021 semester GEO 4910 GIS Programming class at Eastern Illinois University.
+of the Spring 2021 semester GEO 4910 GIS Programming class at Eastern Illinois University. 
 
 Student Team Members:
 - Luke Jansen
 - Tanner Jones
 - Farouk Olaitan
 - Megshi Thakur
+
+The student team did an amazing job to rigorously create and test the various geometry primitives that remain at the core of the code.

@@ -24,8 +24,15 @@ Only a finite number of vectors are shown, but the algorithm computes distances 
 <img src="./readme_images/hausdorff_variations.png?v=1" height="300px">
 </p>
 
-As the above illustration shows, significant differences can occur between the continuous Hausdorff distance ($H_{A \to B}$) and two common approximations: the Hausdorff distance between vertices of both polylines ($H_{v_A \to v_B}$) and from vertices of one polyline to the other polyline in its entirety ($H_{v_A \to B}$).
+As the above illustration shows, significant differences can occur between the continuous Hausdorff distance ($H_{A \to B}$) and two common approximations: the Hausdorff distance between vertices of both polylines ($H_{v_A \to v_B}$) and from vertices of one polyline to the other polyline ($H_{v_A \to B}$).
 
+To compute the average and Hausdorff distances, the algorithm constructs a function representing the distance from every point on A to the nearest point on B:
+
+<p align="center">
+<img src="Hangouët_example_social_preview.gif" height="300px">
+</p>
+
+This distance function can be captured and used for additional analysis, e.g. to compute the proportion of A within a prescribed distance of B.
 
 # Running the Code
 It is assumed that you already have python v.3x installed and know how to 

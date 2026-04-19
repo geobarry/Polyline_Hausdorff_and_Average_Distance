@@ -12,19 +12,19 @@ The Hausdorff distance is the maximum of these distances:
 $$H_{A \to B} = \max_{a \in A} \left[ \min_{b \in B} \, d_{a,b} \right]$$
 
 # Illustrations
-The vectors used in the calculation of each distance metric are illustrated below:
+Vectors used in the calculation of each distance metric are illustrated below:
 
 <p align="center">
 <img src="./readme_images/distance_illustrations.png?v=1" height="300px">
 </p>
 
-Only a finite number of vectors are shown, but the algorithm computes distances based on a continuous traversal of polyline A. This distinguishes the continuous metrics computed here from approximations that incorporate only vertices of one or both polylines. The image below illustrates differences 10between the continuous Hausdorff distance ($H_{A \to B}$) and two common approximations: the Hausdorff distance between vertices of both polylines ($H_{v_A \to v_B}$) and from vertices of one polyline to the other polyline ($H_{v_A \to B}$).
+Only a finite number of vectors are shown, but the algorithm computes distances based on a continuous traversal of polyline A. This distinguishes the continuous metrics computed here from approximations that incorporate only vertices of one or both polylines. The image below illustrates differences between the continuous Hausdorff distance ($H_{A \to B}$) and two common approximations: the Hausdorff distance between vertices of both polylines ($H_{v_A \to v_B}$) and from vertices of one polyline to the other polyline ($H_{v_A \to B}$).
 
 <p align="center">
 <img src="./readme_images/hausdorff_variations.png?v=1" height="300px">
 </p>
 
-To compute the average and Hausdorff distances the algorithm constructs a "distance function. representing the distance from every point on A to the nearest point on B, shown as a dashed black line in the following animation:
+To compute the average and Hausdorff distances the algorithm constructs a "distance function" representing the distance from every point on A to the nearest point on B, shown as a dashed black line in the following animation:
 
 <p align="center">
 <img src="Hangouët_example_social_preview.gif" height="300px">
@@ -67,12 +67,10 @@ You can also view sample animations contained in the animations folder.
 # Credits
 Details about the algorithms implemented in this code can be found in the following journal article:
 
-> Efficient Computation for Continuous Hausdorff and Average Euclidean Distance between Polylines
-> \nJournal: International Journal of Geographical Information Systems (Accepted: 04-Mar-2026)270
-> \nAuthors: Barry Kronenfeld, Barbara P. Buttenfield, Lawrence V. Stanislawski and Ethan Shavers
+> Barry Kronenfeld, Barbara P. Buttenfield, Lawrence V. Stanislawski and Ethan Shavers. Efficient Computation for Continuous Hausdorff and Average Euclidean Distance between Polylines. International Journal of Geographical Information Systems (Accepted: 04-Mar-2026) 
 
-Initial development of the Hausdorff distance computation was a joint project
-of the Spring 2021 semester GEO 4910 GIS Programming class at Eastern Illinois University. 
+Initial development of the Hausdorff distance computation was performed as a class project
+by students in GEO 4910 GIS Programming at Eastern Illinois University in Spring 2021. 
 
 Student Team Members:
 - Luke Jansen
@@ -80,4 +78,4 @@ Student Team Members:
 - Farouk Olaitan
 - Megshi Thakur
 
-The student team did an amazing job to rigorously create and test the various geometry primitives that remain at the core of the code.
+The students rigorously constructed and tested the various geometry primitives that remain at the core of the code.

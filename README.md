@@ -29,7 +29,7 @@ As the above illustration shows, significant differences can occur between the c
 To compute the average and Hausdorff distances, the algorithm constructs a function representing the distance from every point on A to the nearest point on B:
 
 <p align="center">
-<img src="Hangouët_example_social_preview.gif" height="300px">
+<img src=".1Hangouët_example_social_preview.gif" height="300px">
 </p>
 
 This distance function can be captured and used for additional analysis, e.g. to compute the proportion of A within a prescribed distance of B.
@@ -56,11 +56,8 @@ To run this code, you will first need to install the following python packages
 
 Basic usage is described in the python module **usage.py**.
 
-# Reproducing Journal Article Figures
-Run the following modules to reconstruct figures and data in the submitted manuscript. 
-You should be able to just run each module without altering anything, but explanations 
-and optional parameters to modify (e.g. folders to save results to) are at the top
-of each module:
+# Journal Figures
+Run the following modules to reconstruct figures and data in the journal article in IJGIS describing the algorithms (below). You should be able to just run each module without altering anything, but explanations and optional parameters to modify (e.g. folders to save results to) are at the top of each module:
 - Figure 1: figure_1_hausdorff_comparison.py
 - Figure 8: figure_8a_construct_images.py, figure_8b_tile_images.py
 - Figure 9: data are contained in the folder “sample_data”.
@@ -69,13 +66,12 @@ of each module:
 
 You can also view sample animations contained in the animations folder.
 
-# Acknowledgments
-Details about the algorithms implemented in this code can be found in our journal article in International Journal of Geographical Information Systems:
+# Credits
+Details about the algorithms implemented in this code can be found in the following journal article:
 
-> Title: Efficient Computation for Continuous Hausdorff and Average Euclidean Distance between Polylines
-> Authors: Barry Kronenfeld, Barbara P. Buttenfield, Lawrence V. Stanislawski and Ethan Shavers
-> Accepted: 04-Mar-2026
-
+> Efficient Computation for Continuous Hausdorff and Average Euclidean Distance between Polylines
+> \nJournal: International Journal of Geographical Information Systems (Accepted: 04-Mar-2026)270
+> \nAuthors: Barry Kronenfeld, Barbara P. Buttenfield, Lawrence V. Stanislawski and Ethan Shavers
 
 Initial development of the Hausdorff distance computation was a joint project
 of the Spring 2021 semester GEO 4910 GIS Programming class at Eastern Illinois University. 

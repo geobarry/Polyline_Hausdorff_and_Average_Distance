@@ -1,10 +1,23 @@
-# ABOUT
-This repository contains code to calculate the continuous Hausdorff and average distances between two polylines. 
+# About
+This repository contains code to calculate the continuous directed Hausdorff and average distances between two polylines (A & B) embedded in a standard 2d cartesian coordinate system. 
 
+The Hausdorff distance is the largest gap one would have to cross to get from A to B:
 
+$$\[ H_{A \to B} = \max_{a \in A} \left[ \min_{b \in B} \, d_{a,b} \right] \]$$
 
-This repository contains code for review, associated with a submission to the 
-International Journal of Geographical Information Science. 
+The average distance is the average of distances between all points on A and the nearest corresponding point on B, where the average is computed as the integral of the distance function divided by the length of A:
+
+$$\[ 
+\bar{d}_{A \to B} 
+= 
+\frac{
+    \displaystyle \int_{a \in A} \left[ \min_{b \in B} d_{a,b} \right]
+}{
+    \operatorname{len}(A)
+}
+\]$$
+
+# Running the Code
 It is assumed that you already have python v.3x installed and know how to 
 run basic python modules.
 
@@ -24,6 +37,9 @@ To run this code, you will first need to install the following python packages
 - pyshp (https://pypi.org/project/pyshp/)
 - numpy, scipy, matplotlib (these come with most python installations already)
 
+Basic usage is described in the python module **usage.py**.
+
+# Reproducing Journal Article Figures
 Run the following modules to reconstruct figures and data in the submitted manuscript. 
 You should be able to just run each module without altering anything, but explanations 
 and optional parameters to modify (e.g. folders to save results to) are at the top
@@ -36,7 +52,7 @@ of each module:
 
 You can also view sample animations contained in the animations folder.
 
-# ACKNOWLEDGMENTS
+# Acknowledgments
 Details about the algorithms implemented in this code can be found in our journal article in International Journal of Geographical Information Systems:
 
 > Title: Efficient Computation for Continuous Hausdorff and Average Euclidean Distance between Polylines

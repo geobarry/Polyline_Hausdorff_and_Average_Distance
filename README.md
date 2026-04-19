@@ -14,7 +14,9 @@ $$H_{A \to B} = \max_{a \in A} \left[ \min_{b \in B} \, d_{a,b} \right]$$
 # Illustrations
 The vectors used in the calculation of each distance metric are illustrated below:
 
-![distance illustrations](./readme_images/distance_illustrations.png?v=1)
+<p align="center">
+<img src="./readme_images/distance_illustrations.png?v=1" height="300px">
+</p>
 
 Only a finite number of vectors are shown, but the algorithm computes distances based on a continuous traversal of polyline A. This distinguishes the continuous metrics computed here from approximations that incorporate only vertices of one or both polylines, as illustrated below: 
 

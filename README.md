@@ -15,9 +15,9 @@ These distances are illustrated below:
 
 ![distance illustrations](./readme_images/distance_illustrations.png)
 
-The directed average distances the average of directional distances from each point on A to the nearest point on B. The Hausdorff distance is the maximum of these directional distances. Note that although the above illustrations show a finite number of distance vectors, the algorithm computes these distances based on a continuous traversal of polyline A. This distinguishes the continuous metrics computed by here from distance metrics that incorporate only vertices of one or both polylines. For example, the figure below shows the difference between the continuous Hausdorff distance ($H_{A \to B}$) from the Hausdorff distance between vertices of both polylines ($H_{v_A \to v_B}$) and from vertices of one polyline to the other polyline in its entirety ($H_{v_A \to B}$):
+The directed average distance is the average of directional distances from each point on A to the nearest point on B. The Hausdorff distance is the maximum of these directional distances. Note that although the above illustrations show a finite number of distance vectors, the algorithm computes these distances based on a continuous traversal of polyline A. This distinguishes the continuous metrics computed by here from distance metrics that incorporate only vertices of one or both polylines. For example, the figure below shows the difference between the continuous Hausdorff distance ($H_{A \to B}$) from the Hausdorff distance between vertices of both polylines ($H_{v_A \to v_B}$) and from vertices of one polyline to the other polyline in its entirety ($H_{v_A \to B}$):
 
-![Hausdorff variations](./readme_images/hausdorff_variations.tiff)
+![Hausdorff variations](./readme_images/hausdorff_variations.png)
 
 # Running the Code
 It is assumed that you already have python v.3x installed and know how to 

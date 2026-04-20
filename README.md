@@ -1,3 +1,4 @@
+[![DOI](https://zenodo.org/badge/362176232.svg)](https://doi.org/10.5281/zenodo.19656670)
 # About
 This repository contains code to calculate the continuous directed Hausdorff and average distances between two polylines (A & B) embedded in a standard 2d cartesian coordinate system. 
 

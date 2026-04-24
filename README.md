@@ -74,9 +74,9 @@ Initial development of the Hausdorff distance computation was performed as a cla
 by students in _GEO 4910: GIS Programming_ at Eastern Illinois University in Spring 2021. 
 
 Student Team Members:
+- Megshi Thakur
 - Luke Jansen
 - Tanner Jones
 - Farouk Olaitan
-- Megshi Thakur
 
 The students rigorously constructed and tested the various geometry primitives that remain at the core of the code.
